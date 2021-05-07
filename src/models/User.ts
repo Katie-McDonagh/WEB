@@ -10,4 +10,7 @@ export class User {
     return this.data[propName]
   }
 
+  set(update: UserProps): void {
+    Object.assign(this.data, update);
+  }
 }
