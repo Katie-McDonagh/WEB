@@ -1,6 +1,8 @@
+import axios, { AxiosResponse } from 'axios'
 interface UserProps {
-  name?: string,
+  name?: string
   age?: number
+  id?: number
 }
 
 // type alias
@@ -35,6 +37,13 @@ export class User {
 
     handlers.forEach(callback => {
       callback()
+    })
+  }
+
+  fetch(): void {
+    // this will return a promise
+    axios.get(`http://localhost:3000/users/${this.get('id')}`).then((response: AxiosResponse): void => {
+      this.set(response.data)
     })
   }
 }
