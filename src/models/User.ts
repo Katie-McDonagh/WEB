@@ -1,4 +1,5 @@
 import { Eventing } from './Eventing'
+import { Sync } from './Sync'
 export interface UserProps {
   name?: string
   age?: number
@@ -8,8 +9,10 @@ export interface UserProps {
 // type alias
 type Callback = () => void
 
+const rootUrl = 'http://localhost:3000/users'
 export class User {
   public events: Eventing = new Eventing()
+  public sync: Sync<UserProps> = new Sync<UserProps>(rootUrl)
   //  below is assigning events to an object where the key is a string and the value is a callback function
   // events: { [key: string]: Callback[] } = {};
   constructor(private data: UserProps) { }
